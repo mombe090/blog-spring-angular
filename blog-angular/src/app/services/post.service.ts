@@ -13,6 +13,9 @@ export class PostService {
 
   constructor(private http: HttpClient, private staticService: StaticService) {}
 
+  /*
+  * Cette methode récupères tous les posts depuis le backend;
+  * */
   getPosts() {
     this.http.get(this.staticService.baseUrl + 'posts', this.staticService.httpOptions).subscribe(
       (response: PostModel[]) => {
@@ -22,5 +25,21 @@ export class PostService {
       }
     );
     return this.posts_$;
+  }
+
+  getPost(id: number) {
+   return this.http.get(this.staticService.baseUrl + 'posts/' + id, this.staticService.httpOptions);
+  }
+
+  savePost(post: PostModel) {
+   return this.http.post(this.staticService.baseUrl + 'posts', post, this.staticService.httpOptions);
+  }
+
+  updatePost(post: PostModel) {
+    return this.http.put(this.staticService.baseUrl + 'posts/' + post.id, post, this.staticService.httpOptions);
+  }
+
+  deletePost(id: number) {
+    return this.http.delete(this.staticService.baseUrl + 'posts/' + id, this.staticService.httpOptions);
   }
 }

@@ -5,6 +5,7 @@ import com.mombesoft.springbootvuejs.main.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -13,7 +14,7 @@ public class PostService {
     PostRepository postRepository;
 
     public List<Post> getPosts() {
-        return  this.postRepository.findAll();
+        return  this.postRepository.findAllByDeleted_atIsNull();
     }
 
     public Post savePost(Post post) {
@@ -29,7 +30,9 @@ public class PostService {
     }
 
     public String deletePost(int id) {
-        this.postRepository.delete(this.getPost(id));
-        return "Post deleted";
+        Post post = this.getPost(id);
+        post.setDeleted_at(new Date());
+        this.savePost(post);
+        return new String("Post deleted");
     }
 }

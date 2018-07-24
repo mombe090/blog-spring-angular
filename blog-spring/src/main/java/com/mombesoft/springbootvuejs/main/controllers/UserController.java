@@ -2,10 +2,10 @@ package com.mombesoft.springbootvuejs.main.controllers;
 
 import com.mombesoft.springbootvuejs.main.entities.User;
 import com.mombesoft.springbootvuejs.main.services.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity store(@RequestBody User user) {
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
@@ -46,7 +46,7 @@ public class UserController {
     @PutMapping(value = "/{id}")
     public ResponseEntity update(@RequestBody User user) {
         if (user.getPassword().length() != 0)
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 

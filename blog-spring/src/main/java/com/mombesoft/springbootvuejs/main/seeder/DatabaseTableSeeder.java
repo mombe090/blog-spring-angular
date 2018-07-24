@@ -7,9 +7,9 @@ import com.mombesoft.springbootvuejs.main.entities.User;
 import com.mombesoft.springbootvuejs.main.services.CommentService;
 import com.mombesoft.springbootvuejs.main.services.PostService;
 import com.mombesoft.springbootvuejs.main.services.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -41,7 +41,7 @@ public class DatabaseTableSeeder implements CommandLineRunner {
                                 faker.name().name(),
                                 faker.internet().safeEmailAddress(),
                                 faker.name().username(),
-                                new BCryptPasswordEncoder().encode("123456")
+                                BCrypt.hashpw("123456", BCrypt.gensalt())
                         );
                 this.userService.saveUser(user);
             }
@@ -50,7 +50,6 @@ public class DatabaseTableSeeder implements CommandLineRunner {
 
         String encryptedPassword = this.userService.getUser(1).getPassword();
         System.out.println(encryptedPassword);
-        System.out.println(new BCryptPasswordEncoder().matches("123456", encryptedPassword));
     }
 
     private void PostTableSeeder() {

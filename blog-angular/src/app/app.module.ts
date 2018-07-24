@@ -10,6 +10,8 @@ import {RouterModule} from '@angular/router';
 import { HomeComponent } from './components/pages/home/home.component';
 import {routes} from './routes.routes';
 import {HttpClientModule} from '@angular/common/http';
+import { PostsComponent } from './components/pages/posts/posts.component';
+import { PostsShowComponent } from './components/pages/posts/posts-show/posts-show.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {HttpClientModule} from '@angular/common/http';
     MainHeaderComponent,
     FooterComponent,
     SideBarComponent,
-    HomeComponent
+    HomeComponent,
+    PostsComponent,
+    PostsShowComponent
   ],
   imports: [
     BrowserModule,

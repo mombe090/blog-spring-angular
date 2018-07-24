@@ -1,18 +1,17 @@
 package com.mombesoft.springbootvuejs.main.controllers;
 
 import com.mombesoft.springbootvuejs.main.entities.Post;
-import com.mombesoft.springbootvuejs.main.entities.User;
 import com.mombesoft.springbootvuejs.main.services.PostService;
 import com.mombesoft.springbootvuejs.main.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/posts")
 public class PostController {
@@ -55,9 +54,10 @@ public class PostController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity destroy(@PathVariable int id) {
+
         String msg = this.postService.deletePost(id);
 
-        return new  ResponseEntity<>( msg, HttpStatus.ACCEPTED);
+        return new  ResponseEntity<>( null, HttpStatus.ACCEPTED);
     }
 
 }
