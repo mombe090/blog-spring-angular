@@ -6,11 +6,13 @@ export class PostModel {
     public id: number,
     public title: string,
     public content: string,
-    public image: string,
+    public image?: string,
 
-    public created_at: string,
-    public updated_at: string,
-    public user: UserModel,
-    public comments: CommentModel[]
+
+    public user?: UserModel,
+    public comments?: CommentModel[],
+
+  public created_at?: string,
+  public updated_at?: string,
   ) {}
 }

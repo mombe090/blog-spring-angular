@@ -5,6 +5,7 @@ import com.mombesoft.springbootvuejs.main.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +16,7 @@ public class UserService {
     UserRepository userRepository;
 
     public List<User> getUsers() {
-        return  this.userRepository.findAll();
+        return  this.userRepository.allWithoutDeleted();
     }
 
     public User saveUser(User user) {
@@ -39,7 +40,10 @@ public class UserService {
     }
 
     public String deleteUser(int id) {
-        this.userRepository.delete(this.getUser(id));
+        User user = this.getUser(id);
+             user.setDeleted_at(new Date());
+             this.saveUser(user);
+
         return "User deleted";
     }
 }

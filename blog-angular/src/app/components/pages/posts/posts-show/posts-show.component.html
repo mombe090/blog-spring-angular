@@ -7,7 +7,7 @@
         {{post?.content}}
       </p>
       <div class="float-right">
-        <button class="btn btn-warning">Editer</button>
+        <button class="btn btn-warning" (click)="onEdite(post?.id)">Editer</button>
         <button class="btn btn-danger" (click)="onDelete(post?.id)">Supprimer</button>
       </div>
     </div>

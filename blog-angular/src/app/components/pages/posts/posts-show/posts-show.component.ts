@@ -41,4 +41,8 @@ export class PostsShowComponent implements OnInit {
       }
     );
   }
+
+  onEdite(id: number) {
+    this.router.navigate(['/posts/edit/' + id]);
+  }
 }

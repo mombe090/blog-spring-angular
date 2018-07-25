@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -47,6 +48,7 @@ public class UserController {
     public ResponseEntity update(@RequestBody User user) {
         if (user.getPassword().length() != 0)
             user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+        this.userService.saveUser(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 

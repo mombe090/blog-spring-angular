@@ -33,6 +33,7 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity store(@RequestBody Post post) {
+        this.postService.savePost(post);
         return new ResponseEntity<>(post, HttpStatus.CREATED);
     }
 

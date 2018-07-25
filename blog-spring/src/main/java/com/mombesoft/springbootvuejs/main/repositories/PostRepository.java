@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface PostRepository extends CrudRepository<Post, Long> {
     //List<Post> findAllByDeleted_atIsNull();
-    @Query("SELECT p FROM Post p  WHERE p.deleted_at = NULL")
+
+    @Query("SELECT p FROM Post p  WHERE p.deleted_at = NULL ORDER BY p.created_at DESC")
     List<Post> findAllByDeleted_atIsNull();
     Post findById(int id);
     Post findByTitleLike(String title);

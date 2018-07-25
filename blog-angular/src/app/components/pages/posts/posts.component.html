@@ -1,7 +1,7 @@
-<h1 class="my-4">List of Todos
+<h1 class="my-4">List of blog Posts
   <small>fetch from the backend api.</small>
 </h1>
-
+<button class="btn btn-sm btn-info" style="margin-bottom: 5px" (click)="onCreatePost()">Créer +</button>
 <!-- Blog Post -->
 <div style="height: 450px; overflow-y: auto">
   <div class="card mb-4" *ngFor="let post of posts">

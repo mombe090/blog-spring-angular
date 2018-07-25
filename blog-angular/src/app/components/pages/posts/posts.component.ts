@@ -29,4 +29,7 @@ export class PostsComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/posts/' + id]);
   }
 
+  onCreatePost() {
+    this.router.navigate(['/posts/create']);
+  }
 }

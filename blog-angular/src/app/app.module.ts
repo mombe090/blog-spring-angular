@@ -12,6 +12,8 @@ import {routes} from './routes.routes';
 import {HttpClientModule} from '@angular/common/http';
 import { PostsComponent } from './components/pages/posts/posts.component';
 import { PostsShowComponent } from './components/pages/posts/posts-show/posts-show.component';
+import { PostsEditComponent } from './components/pages/posts/posts-edit/posts-edit.component';
+import { PostsCreateComponent } from './components/pages/posts/posts-create/posts-create.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { PostsShowComponent } from './components/pages/posts/posts-show/posts-sh
     SideBarComponent,
     HomeComponent,
     PostsComponent,
-    PostsShowComponent
+    PostsShowComponent,
+    PostsEditComponent,
+    PostsCreateComponent
   ],
   imports: [
     BrowserModule,
